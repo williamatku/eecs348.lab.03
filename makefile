@@ -5,5 +5,5 @@ sales:
 
 nfl:
 	clang ex2_nfl.c -o nfl.out
-	./nfl.out 55
+	./nfl.out
 	rm ./nfl.out

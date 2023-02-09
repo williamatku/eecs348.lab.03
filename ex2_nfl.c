@@ -35,16 +35,16 @@ int main(int argc, char** argv) {
     const int TD2P_MAX = MAX_TOUCHDOWNS;
     const int TDFG_MAX = MAX_TOUCHDOWNS;
 
-    if (argc!=2) return 1; // ENSURE user is passing in a point value to calculate all possibilities within
-    const int dest_score = atoi(argv[1]); // get score to check for
+    int dest_score;
+    if (argc == 2) { 
+        dest_score = atoi(argv[1]); // get score to calculate possibilities
+    } else {
+        printf("Enter a score: "); // ENSURE user is passing in a point value to calculate all possibilities within
+        scanf("%d",&dest_score);
+    }
 
     char buffer[10] = "not zero";
-
-    // instructions "start" "menu"
-    printf("Press ENTER to get more results, type 0 or 1 and then ENTER to exit.");
-    fgets(buffer,100,stdin);
-
-    printf("Listing all possibilities found w/ score: %d...\n\n", dest_score);
+    printf("Listing all possibilities found w/ score: %d...\nPress ENTER to get more results, type 0 or 1 and then ENTER to exit.\n", dest_score);
 
     for (int td = 0; td < TD_MAX; td++) {
     for (int fg = 0; fg < FG_MAX; fg++) {
@@ -61,9 +61,10 @@ int main(int argc, char** argv) {
         // match the score with USER provided score
         if (score == dest_score) {
             // print all results, as well as prompt the user to continue or term. the program
+            fflush(stdin); // flush input and wait for any user-input
             printf("\tTDs:%d, FGs:%d, SAFETYs:%d, TD+2p:%d, TD+FG:%d\n",
                 td, fg, safety, td2p, tdfg);
-            fgets(buffer,100,stdin);
+            fgets(buffer,100,stdin); // keep running the program until the user exits
             if (buffer[0] == '0' || buffer[0] == '1') return 0;
         }   
     }}}}}
