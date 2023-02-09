@@ -8,6 +8,19 @@ const char* MONTHS[] // String array to keep months
         "July", "August", "September", 
         "October", "November", "December"};
 
+/*
+    Dev:            William A. Morris
+    Created:        2023-02-09
+    Last Modified:  2023-02-09
+
+    KUID:           3057236
+    Email:          morris.william@ku.edu
+    Class:          EECS 348 
+    Lab Section:    Thursdays @9am
+
+    Description:    
+        A simple (and probably unsafe) C Program to generate an annual sales report.
+*/
 int main(int argc, char** argv) {
     char* path_to_file; // Var to capture user-provided path
     double sales_ordered_by_month[12]; // Double[] to capture sales numbers in order Jan->Dec
