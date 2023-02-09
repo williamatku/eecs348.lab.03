@@ -5,5 +5,5 @@ salesreport:
 
 dev:
 	clang main.c -o a.out
-	./a.out
+	./a.out 55
 	rm ./a.out

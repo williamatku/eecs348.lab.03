@@ -86,5 +86,5 @@ int main(int argc, char** argv) {
             sales_ordered_by_month[max_to_min_sales_months[i]]);
     }
 
-    return 0;
+    return 0; // exit wo errors :)
 }
