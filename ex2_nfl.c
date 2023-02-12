@@ -3,7 +3,7 @@
 #include <string.h>
 
 // give programmer control of program compute boundaries
-#define MAX_PLAYS 100
+#define MAX_PLAYS 50
 #define MAX_TOUCHDOWNS MAX_PLAYS
 #define MAX_FIELDGOALS MAX_PLAYS
 #define MAX_SAFETIES MAX_PLAYS
@@ -22,6 +22,7 @@
         A simple (and probably unsafe) C Program to calculate possible play breakdowns of NFL Football scores.
 */
 int main(int argc, char** argv) {
+    int running = 1;
     // DEFINE point values for every play
     const int TD_POINTS = 6; 
     const int FG_POINTS = 3;
@@ -44,8 +45,9 @@ int main(int argc, char** argv) {
     }
 
     char buffer[10] = "not zero";
-    printf("Listing all possibilities found w/ score: %d...\nPress ENTER to get more results, type 0 or 1 and then ENTER to exit.\n", dest_score);
+    printf("Listing all possibilities found w/ score: %d...\n", dest_score);
 
+    while (running) {
     for (int td = 0; td < TD_MAX; td++) {
     for (int fg = 0; fg < FG_MAX; fg++) {
     for (int safety = 0; safety < SAFETY_MAX; safety++) {
@@ -61,12 +63,15 @@ int main(int argc, char** argv) {
         // match the score with USER provided score
         if (score == dest_score) {
             // print all results, as well as prompt the user to continue or term. the program
-            fflush(stdin); // flush input and wait for any user-input
             printf("\tTDs:%d, FGs:%d, SAFETYs:%d, TD+2p:%d, TD+FG:%d\n",
                 td, fg, safety, td2p, tdfg);
-            fgets(buffer,100,stdin); // keep running the program until the user exits
-            if (buffer[0] == '0' || buffer[0] == '1') return 0;
         }   
     }}}}}
+        printf("Input 0 or 1 to exit, or enter a score to generate results.\n");
+        scanf("%s",buffer); // keep running the program until the user exits
+        if (buffer[0] == '0' || buffer[0] == '1') running = 0;
+        else dest_score = atoi(buffer); 
+    }
     printf("Goodbye :)\n");
+    return 0;
 }
